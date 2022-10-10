@@ -9,6 +9,7 @@ import type { OutOfBandRecord } from './modules/oob/repository'
 import type { AutoAcceptProof } from './modules/proofs'
 import type { MediatorPickupStrategy } from './modules/routing'
 import type { BaseRecord } from './storage/BaseRecord'
+import type { BaseRecord } from './storage/BaseRecord'
 
 export enum KeyDerivationMethod {
   /** default value in indy-sdk. Will be used when no value is provided */
@@ -27,6 +28,7 @@ export interface WalletConfig {
     type: string
     [key: string]: unknown
   }
+  masterSecretId?: string
   masterSecretId?: string
 }
 
@@ -80,6 +82,9 @@ export interface InitConfig {
   baseMediatorReconnectionIntervalMs?: number
   maximumMediatorReconnectionIntervalMs?: number
   useDidKeyInProtocols?: boolean
+  baseMediatorReconnectionIntervalMs?: number
+  maximumMediatorReconnectionIntervalMs?: number
+  useDidKeyInProtocols?: boolean
 
   useLegacyDidSovPrefix?: boolean
   connectionImageUrl?: string
@@ -99,6 +104,7 @@ export interface OutboundMessage<T extends AgentMessage = AgentMessage> {
   connection: ConnectionRecord
   sessionId?: string
   outOfBand?: OutOfBandRecord
+  associatedRecord?: BaseRecord
   associatedRecord?: BaseRecord
 }
 

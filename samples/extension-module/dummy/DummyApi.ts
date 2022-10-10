@@ -83,6 +83,15 @@ export class DummyApi {
     return this.dummyService.findAllByQuery(this.agentContext, query)
   }
 
+  /**
+   * Retrieve all dummy records
+   *
+   * @returns List containing all records
+   */
+  public findAllByQuery(query: Query<DummyRecord>): Promise<DummyRecord[]> {
+    return this.dummyService.findAllByQuery(query)
+  }
+
   private registerHandlers(dispatcher: Dispatcher) {
     dispatcher.registerHandler(new DummyRequestHandler(this.dummyService))
     dispatcher.registerHandler(new DummyResponseHandler(this.dummyService))

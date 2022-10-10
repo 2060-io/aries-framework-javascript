@@ -189,6 +189,16 @@ export class MediationRecipientService {
 
     const message = this.createKeylistUpdateMessage(useDidKey ? verkeyToDidKey(verKey) : verKey)
 
+    // Use our useDidKey configuration unless we know the key formatting other party is using
+    let useDidKey = this.config.useDidKeyInProtocols
+
+    const useDidKeysConnectionMetadata = connection.metadata.get(ConnectionMetadataKeys.UseDidKeysForProtocol)
+    if (useDidKeysConnectionMetadata) {
+      useDidKey = useDidKeysConnectionMetadata[KeylistUpdateMessage.type.protocolUri] ?? useDidKey
+    }
+
+    const message = this.createKeylistUpdateMessage(useDidKey ? verkeyToDidKey(verKey) : verKey)
+
     mediationRecord.assertReady()
     mediationRecord.assertRole(MediationRole.Recipient)
 

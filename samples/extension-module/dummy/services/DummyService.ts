@@ -129,6 +129,15 @@ export class DummyService {
   }
 
   /**
+   * Retrieve dummy records by query
+   *
+   * @returns List containing all dummy records matching query
+   */
+  public findAllByQuery(query: Query<DummyRecord>): Promise<DummyRecord[]> {
+    return this.dummyRepository.findByQuery(query)
+  }
+
+  /**
    * Retrieve a dummy record by id
    *
    * @param dummyRecordId The dummy record id

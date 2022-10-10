@@ -149,6 +149,9 @@ export class MediatorService {
     // Use our useDidKey configuration, as this is the first interaction for this protocol
     const useDidKey = agentContext.config.useDidKeyInProtocols
 
+    // Use our useDidKey configuration, as this is the first interaction for this protocol
+    const useDidKey = this.agentConfig.useDidKeyInProtocols
+
     const message = new MediationGrantMessage({
       endpoint: agentContext.config.endpoints[0],
       routingKeys: useDidKey
