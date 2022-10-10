@@ -228,10 +228,6 @@ export abstract class CredentialService<CFs extends CredentialFormat[] = Credent
     return this.credentialRepository.findByQuery(agentContext, query)
   }
 
-  public async findAllByQuery(query: Query<CredentialExchangeRecord>): Promise<CredentialExchangeRecord[]> {
-    return this.credentialRepository.findByQuery(query)
-  }
-
   /**
    * Find a credential record by id
    *

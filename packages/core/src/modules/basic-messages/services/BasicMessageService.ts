@@ -77,13 +77,4 @@ export class BasicMessageService {
     const basicMessageRecord = await this.getById(agentContext, basicMessageRecordId)
     return this.basicMessageRepository.delete(agentContext, basicMessageRecord)
   }
-
-  public async getById(basicMessageRecordId: string) {
-    return this.basicMessageRepository.getById(basicMessageRecordId)
-  }
-
-  public async deleteById(basicMessageRecordId: string) {
-    const basicMessageRecord = await this.getById(basicMessageRecordId)
-    return this.basicMessageRepository.delete(basicMessageRecord)
-  }
 }
