@@ -1,15 +1,15 @@
-import type { InboundMessageContext } from '../../../../../agent/models/InboundMessageContext'
-import type { EncryptedMessage } from '../../../../../types'
+import type { InboundMessageContext } from '../../../../agent/models/InboundMessageContext'
+import type { EncryptedMessage } from '../../../../types'
 import type { DeliveryRequestMessage, MessagesReceivedMessage, StatusRequestMessage } from './messages'
 
-import { Dispatcher } from '../../../../../agent/Dispatcher'
-import { createOutboundMessage } from '../../../../../agent/helpers'
-import { InjectionSymbols } from '../../../../../constants'
-import { Attachment } from '../../../../../decorators/attachment/Attachment'
-import { AriesFrameworkError } from '../../../../../error'
-import { inject, injectable } from '../../../../../plugins'
-import { MessageRepository } from '../../../../../storage/MessageRepository'
-import { MediationRecipientService } from '../../../services'
+import { Dispatcher } from '../../../../agent/Dispatcher'
+import { createOutboundMessage } from '../../../../agent/helpers'
+import { InjectionSymbols } from '../../../../constants'
+import { Attachment } from '../../../../decorators/attachment/Attachment'
+import { AriesFrameworkError } from '../../../../error'
+import { inject, injectable } from '../../../../plugins'
+import { MessageRepository } from '../../../../storage/MessageRepository'
+import { MediationRecipientService } from '../../../routing/services'
 
 import {
   DeliveryRequestHandler,

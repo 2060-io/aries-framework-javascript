@@ -7,7 +7,7 @@ import { Key, KeyType } from '../../../crypto'
 import { injectable } from '../../../plugins'
 import { RoutingEventTypes } from '../RoutingEvents'
 
-import { MediationRecipientService } from './MediationRecipientService'
+import { MediationRecipientService } from '../protocol/coordinate-mediation/v1/MediationRecipientService'
 
 @injectable()
 export class RoutingService {

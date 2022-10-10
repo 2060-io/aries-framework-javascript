@@ -14,7 +14,7 @@ import {
   StatusRequestMessage,
   V2MessagePickupService,
 } from '../../protocol'
-import { MediationRecipientService } from '../MediationRecipientService'
+import { MediationRecipientService } from '../../protocol/coordinate-mediation/v1/MediationRecipientService'
 
 const mockConnection = getMockConnection({
   state: DidExchangeState.Completed,

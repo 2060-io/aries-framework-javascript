@@ -1,5 +1,5 @@
 import type { Handler, HandlerInboundMessage } from '../../../agent/Handler'
-import type { MediationRecipientService } from '../services/MediationRecipientService'
+import type { MediationRecipientService } from '../protocol/coordinate-mediation/v1/MediationRecipientService'
 
 import { MediationGrantMessage } from '../messages'
 

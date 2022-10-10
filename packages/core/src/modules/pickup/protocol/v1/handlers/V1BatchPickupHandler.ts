@@ -1,5 +1,5 @@
-import type { Handler, HandlerInboundMessage } from '../../../../../../agent/Handler'
-import type { MessagePickupService } from '../MessagePickupService'
+import type { Handler, HandlerInboundMessage } from '../../../../../agent/Handler'
+import type { MessagePickupService } from '../V1MessagePickupService'
 
 import { BatchPickupMessage } from '../messages'
 

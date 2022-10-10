@@ -5,7 +5,7 @@ import { EventEmitter } from '../../../../agent/EventEmitter'
 import { Key } from '../../../../crypto'
 import { IndyWallet } from '../../../../wallet/IndyWallet'
 import { RoutingEventTypes } from '../../RoutingEvents'
-import { MediationRecipientService } from '../MediationRecipientService'
+import { MediationRecipientService } from '../../protocol/coordinate-mediation/v1/MediationRecipientService'
 import { RoutingService } from '../RoutingService'
 
 jest.mock('../../../../wallet/IndyWallet')
