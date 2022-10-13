@@ -15,7 +15,6 @@ import { GenericRecordsApi } from '../modules/generic-records'
 import { LedgerApi } from '../modules/ledger'
 import { OutOfBandApi } from '../modules/oob'
 import { ProofsApi } from '../modules/proofs/ProofsApi'
-import { QuestionAnswerApi } from '../modules/question-answer'
 import { MediatorApi, RecipientApi } from '../modules/routing'
 import { StorageUpdateService } from '../storage'
 import { UpdateAssistant } from '../storage/migration/UpdateAssistant'
@@ -49,8 +48,6 @@ export abstract class BaseAgent<AgentModules extends ModulesMap = EmptyModuleMap
   public readonly mediator: MediatorApi
   public readonly mediationRecipient: RecipientApi
   public readonly basicMessages: BasicMessagesApi
-  public readonly actionMenu: ActionMenuApi
-  public readonly questionAnswer: QuestionAnswerApi
   public readonly genericRecords: GenericRecordsApi
   public readonly ledger: LedgerApi
   public readonly discovery: DiscoverFeaturesApi
@@ -92,8 +89,6 @@ export abstract class BaseAgent<AgentModules extends ModulesMap = EmptyModuleMap
     this.mediator = this.dependencyManager.resolve(MediatorApi)
     this.mediationRecipient = this.dependencyManager.resolve(RecipientApi)
     this.basicMessages = this.dependencyManager.resolve(BasicMessagesApi)
-    this.actionMenu = this.dependencyManager.resolve(ActionMenuApi)
-    this.questionAnswer = this.dependencyManager.resolve(QuestionAnswerApi)
     this.genericRecords = this.dependencyManager.resolve(GenericRecordsApi)
     this.ledger = this.dependencyManager.resolve(LedgerApi)
     this.discovery = this.dependencyManager.resolve(DiscoverFeaturesApi)
@@ -108,8 +103,6 @@ export abstract class BaseAgent<AgentModules extends ModulesMap = EmptyModuleMap
       this.mediator,
       this.mediationRecipient,
       this.basicMessages,
-      this.actionMenu,
-      this.questionAnswer,
       this.genericRecords,
       this.ledger,
       this.discovery,
