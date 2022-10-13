@@ -13,7 +13,7 @@ import { MediatorModuleConfig } from './MediatorModuleConfig'
 import { ForwardHandler, KeylistUpdateHandler } from './handlers'
 import { MediationRequestHandler } from './handlers/MediationRequestHandler'
 import { MessagePickupService, V2MessagePickupService } from './protocol'
-import { BatchHandler, BatchPickupHandler } from './protocol/pickup/v1/handlers'
+import { BatchHandler, BatchPickupHandler } from '../pickup/protocol/v1/handlers'
 import { MediatorService } from './services/MediatorService'
 
 @injectable()

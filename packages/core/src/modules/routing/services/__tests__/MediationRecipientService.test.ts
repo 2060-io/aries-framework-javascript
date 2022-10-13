@@ -31,7 +31,7 @@ import { MediationRole, MediationState } from '../../models'
 import { DeliveryRequestMessage, MessageDeliveryMessage, MessagesReceivedMessage, StatusMessage } from '../../protocol'
 import { MediationRecord } from '../../repository/MediationRecord'
 import { MediationRepository } from '../../repository/MediationRepository'
-import { MediationRecipientService } from '../MediationRecipientService'
+import { MediationRecipientService } from '../../protocol/coordinate-mediation/v1/MediationRecipientService'
 
 jest.mock('../../repository/MediationRepository')
 const MediationRepositoryMock = MediationRepository as jest.Mock<MediationRepository>

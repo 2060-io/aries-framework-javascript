@@ -40,7 +40,7 @@ import { AriesFrameworkError } from '../../error'
 import { Logger } from '../../logger'
 import { DidCommMessageRole } from '../../storage/didcomm/DidCommMessageRole'
 import { ConnectionService } from '../connections/services/ConnectionService'
-import { MediationRecipientService } from '../routing/services/MediationRecipientService'
+import { MediationRecipientService } from '../routing/protocol/coordinate-mediation/v1/MediationRecipientService'
 import { RoutingService } from '../routing/services/RoutingService'
 
 import { ProofResponseCoordinator } from './ProofResponseCoordinator'
