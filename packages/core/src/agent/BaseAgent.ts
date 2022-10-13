@@ -5,7 +5,6 @@ import type { AgentApi, EmptyModuleMap, ModulesMap, WithoutDefaultModules } from
 import type { TransportSession } from './TransportService'
 
 import { AriesFrameworkError } from '../error'
-import { ActionMenuApi } from '../modules/action-menu'
 import { BasicMessagesApi } from '../modules/basic-messages'
 import { ConnectionsApi } from '../modules/connections'
 import { CredentialsApi } from '../modules/credentials'
