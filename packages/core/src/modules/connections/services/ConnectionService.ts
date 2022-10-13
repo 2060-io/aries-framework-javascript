@@ -1,11 +1,13 @@
 import type { AgentContext } from '../../../agent'
 import type { AgentMessage } from '../../../agent/AgentMessage'
 import type { InboundMessageContext } from '../../../agent/models/InboundMessageContext'
+import type { Query } from '../../../storage/StorageService'
 import type { AckMessage } from '../../common'
 import type { OutOfBandDidCommService } from '../../oob/domain/OutOfBandDidCommService'
 import type { OutOfBandRecord } from '../../oob/repository'
 import type { ConnectionStateChangedEvent } from '../ConnectionEvents'
 import type { ConnectionProblemReportMessage } from '../messages'
+import type { ConnectionType } from '../models'
 import type { ConnectionRecordProps } from '../repository/ConnectionRecord'
 
 import { firstValueFrom, ReplaySubject } from 'rxjs'
@@ -173,6 +175,7 @@ export class ConnectionService {
       protocol: HandshakeProtocol.Connections,
       role: DidExchangeRole.Responder,
       state: DidExchangeState.RequestReceived,
+      alias: outOfBandRecord.alias,
       theirLabel: message.label,
       imageUrl: message.imageUrl,
       outOfBandId: outOfBandRecord.id,
@@ -598,6 +601,10 @@ export class ConnectionService {
     return this.connectionRepository.findByQuery(agentContext, { outOfBandId })
   }
 
+  public async findAllByConnectionType(agentContext: AgentContext, connectionType: [ConnectionType | string]) {
+    return this.connectionRepository.findByQuery(agentContext, { connectionType })
+  }
+
   public async findByInvitationDid(agentContext: AgentContext, invitationDid: string) {
     return this.connectionRepository.findByQuery(agentContext, { invitationDid })
   }
@@ -623,6 +630,10 @@ export class ConnectionService {
     )
 
     return null
+  }
+
+  public async findAllByQuery(agentContext: AgentContext, query: Query<ConnectionRecord>): Promise<ConnectionRecord[]> {
+    return this.connectionRepository.findByQuery(agentContext, query)
   }
 
   public async createConnection(agentContext: AgentContext, options: ConnectionRecordProps): Promise<ConnectionRecord> {
