@@ -244,15 +244,10 @@ export class IndyStorageService<T extends BaseRecord> implements StorageService<
   public async getAll(agentContext: AgentContext, recordClass: BaseRecordConstructor<T>): Promise<T[]> {
     assertIndyWallet(agentContext.wallet)
 
-    const recordIterator = this.search(
-      agentContext.wallet,
-      recordClass.type,
-      {},
-      IndyStorageService.DEFAULT_QUERY_OPTIONS
-    )
+    const recordIterator = this.search(agentContext.wallet, recordClass, {}, IndyStorageService.DEFAULT_QUERY_OPTIONS)
     const records = []
     for await (const record of recordIterator) {
-      records.push(this.recordToInstance(record, recordClass))
+      records.push(record)
     }
     return records
   }
@@ -269,25 +264,26 @@ export class IndyStorageService<T extends BaseRecord> implements StorageService<
 
     const recordIterator = this.search(
       agentContext.wallet,
-      recordClass.type,
+      recordClass,
       indyQuery,
       IndyStorageService.DEFAULT_QUERY_OPTIONS
     )
+
     const records = []
     for await (const record of recordIterator) {
-      records.push(this.recordToInstance(record, recordClass))
+      records.push(record)
     }
     return records
   }
 
   private async *search(
     wallet: IndyWallet,
-    type: string,
+    recordClass: BaseRecordConstructor<T>,
     query: WalletQuery,
     { limit = Infinity, ...options }: WalletSearchOptions & { limit?: number }
   ) {
     try {
-      const searchHandle = await this.indy.openWalletSearch(wallet.handle, type, query, options)
+      const searchHandle = await this.indy.openWalletSearch(wallet.handle, recordClass.type, query, options)
 
       let records: Indy.WalletRecord[] = []
 
@@ -303,7 +299,7 @@ export class IndyStorageService<T extends BaseRecord> implements StorageService<
           records = [...records, ...recordsJson.records]
 
           for (const record of recordsJson.records) {
-            yield record
+            yield this.recordToInstance(record, recordClass)
           }
         }
 
@@ -316,7 +312,10 @@ export class IndyStorageService<T extends BaseRecord> implements StorageService<
         }
       }
     } catch (error) {
-      throw new IndySdkError(error, `Searching '${type}' records for query '${JSON.stringify(query)}' failed`)
+      throw new IndySdkError(
+        error,
+        `Searching '${recordClass.type}' records for query '${JSON.stringify(query)}' failed`
+      )
     }
   }
 }
